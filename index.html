@@ -1,1 +1,84 @@
-<html><head><meta content="text/html; charset=UTF-8" http-equiv="content-type"><style type="text/css">ol{margin:0;padding:0}table td,table th{padding:0}.c0{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c1{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c3{background-color:#ffffff;max-width:451.4pt;padding:72pt 72pt 72pt 72pt}.c2{height:11pt}.title{padding-top:0pt;color:#000000;font-size:26pt;padding-bottom:3pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:11pt;font-family:"Arial"}p{margin:0;color:#000000;font-size:11pt;font-family:"Arial"}h1{padding-top:20pt;color:#000000;font-size:20pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style></head><body class="c3 doc-content"><p class="c1"><span class="c0">&lt;!DOCTYPE html&gt;</span></p><p class="c1"><span class="c0">&lt;html lang=&quot;en&quot;&gt;</span></p><p class="c1"><span class="c0">&lt;head&gt;</span></p><p class="c1"><span class="c0">&nbsp; &lt;meta charset=&quot;UTF-8&quot;&gt;</span></p><p class="c1"><span class="c0">&nbsp; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span></p><p class="c1"><span class="c0">&nbsp; &lt;title&gt;Tense Drill with Save&lt;/title&gt;</span></p><p class="c1"><span class="c0">&nbsp; &lt;style&gt;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; body { font-family: Arial, sans-serif; padding: 20px; }</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; .question { margin-bottom: 20px; padding: 10px; border-bottom: 1px solid #ccc; }</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; input { width: 100%; padding: 8px; }</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; .learned { background: #e5ffe5; }</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; .check-btn { background:#10b981; color:white; border:none; padding:8px 12px; margin-top:10px; border-radius:6px; }</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; .learn-btn { background:#f59e0b; color:white; border:none; padding:4px 8px; border-radius:6px; margin-left:6px; }</span></p><p class="c1"><span class="c0">&nbsp; &lt;/style&gt;</span></p><p class="c1"><span class="c0">&lt;/head&gt;</span></p><p class="c1"><span class="c0">&lt;body&gt;</span></p><p class="c1"><span class="c0">&nbsp; &lt;h1&gt;&#30636;&#38291;&#27963;&#29992;&#12489;&#12522;&#12523; &#127919;&lt;/h1&gt;</span></p><p class="c1"><span class="c0">&nbsp; &lt;div id=&quot;quiz&quot;&gt;&lt;/div&gt;</span></p><p class="c1"><span class="c0">&nbsp; &lt;button class=&quot;check-btn&quot; onclick=&quot;checkAnswers()&quot;&gt;&#9989; Check Answers&lt;/button&gt;</span></p><p class="c1 c2"><span class="c0"></span></p><p class="c1"><span class="c0">&nbsp; &lt;script&gt;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; // &#21205;&#35422;&#27963;&#29992;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; const verbs = {</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; come: { base: &quot;come&quot;, third: &quot;comes&quot;, past: &quot;came&quot;, perfect: &quot;has come&quot;, future: &quot;will come&quot; }</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; };</span></p><p class="c1 c2"><span class="c0"></span></p><p class="c1"><span class="c0">&nbsp; &nbsp; // &#20986;&#38988;&#12497;&#12479;&#12540;&#12531;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; const questions = [</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; { id: 1, q: &quot;She ___ to the meeting yesterday.&quot;, tense: &quot;past&quot; },</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; { id: 2, q: &quot;He ___ to school every day.&quot;, tense: &quot;third&quot; },</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; { id: 3, q: &quot;They ___ to the park tomorrow.&quot;, tense: &quot;future&quot; },</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; { id: 4, q: &quot;I ___ to the station already.&quot;, tense: &quot;perfect&quot; }</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; ];</span></p><p class="c1 c2"><span class="c0"></span></p><p class="c1"><span class="c0">&nbsp; &nbsp; const selectedVerb = &quot;come&quot;;</span></p><p class="c1 c2"><span class="c0"></span></p><p class="c1"><span class="c0">&nbsp; &nbsp; // &#20445;&#23384;&#28168;&#12415;&#12481;&#12455;&#12483;&#12463;&#12434;&#35501;&#12415;&#36796;&#12415;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; const learned = JSON.parse(localStorage.getItem(&quot;learned&quot;)) || [];</span></p><p class="c1 c2"><span class="c0"></span></p><p class="c1"><span class="c0">&nbsp; &nbsp; // &#21839;&#38988;&#12434;&#34920;&#31034;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; const quizDiv = document.getElementById(&quot;quiz&quot;);</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; questions.forEach((item,i) =&gt; {</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; const hidden = learned.includes(item.id);</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; quizDiv.innerHTML += `</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class=&quot;question ${hidden ? &quot;learned&quot; : &quot;&quot;}&quot; id=&quot;q${item.id}&quot; ${hidden?&quot;style=&#39;display:none&#39;&quot;:&quot;&quot;}&gt;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${i+1}. ${item.q}</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;button class=&quot;learn-btn&quot; onclick=&quot;markAsLearned(${item.id})&quot;&gt;&#9989; &#35226;&#12360;&#12383;&lt;/button&gt;&lt;br&gt;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;text&quot; id=&quot;ans${item.id}&quot; placeholder=&quot;Type your answer&quot;&gt;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;span id=&quot;result${item.id}&quot;&gt;&lt;/span&gt;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; `;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; });</span></p><p class="c1 c2"><span class="c0"></span></p><p class="c1"><span class="c0">&nbsp; &nbsp; // &#31572;&#12360;&#21512;&#12431;&#12379;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; function checkAnswers() {</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; questions.forEach(item =&gt; {</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; if (learned.includes(item.id)) return; // &#35226;&#12360;&#12383;&#21839;&#38988;&#12399;&#12473;&#12461;&#12483;&#12503;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; const userAns = document.getElementById(&quot;ans&quot;+item.id).value.trim();</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; const correct = verbs[selectedVerb][item.tense];</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; const resultSpan = document.getElementById(&quot;result&quot;+item.id);</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; if(userAns.toLowerCase() === correct.toLowerCase()) {</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; resultSpan.textContent = &quot;&#10004; Correct!&quot;;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; resultSpan.style.color = &quot;green&quot;;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; } else {</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; resultSpan.textContent = `&#10008; Wrong (Answer: ${correct})`;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; resultSpan.style.color = &quot;red&quot;;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; });</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; }</span></p><p class="c1 c2"><span class="c0"></span></p><p class="c1"><span class="c0">&nbsp; &nbsp; // &#12300;&#35226;&#12360;&#12383;&#12301;&#12508;&#12479;&#12531;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; function markAsLearned(id) {</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; if (!learned.includes(id)) {</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; learned.push(id);</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; &nbsp; localStorage.setItem(&quot;learned&quot;, JSON.stringify(learned));</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; }</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; &nbsp; document.getElementById(&quot;q&quot;+id).style.display = &quot;none&quot;;</span></p><p class="c1"><span class="c0">&nbsp; &nbsp; }</span></p><p class="c1"><span class="c0">&nbsp; &lt;/script&gt;</span></p><p class="c1"><span class="c0">&lt;/body&gt;</span></p><p class="c1"><span class="c0">&lt;/html&gt;</span></p><p class="c1 c2"><span class="c0"></span></p><p class="c1 c2"><span class="c0"></span></p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tense Drill with Save</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9fafb; }
+    h1 { text-align: center; margin-bottom: 20px; }
+    .question { margin-bottom: 20px; padding: 12px; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
+    .learned { background: #e5ffe5; }
+    .check-btn { background:#10b981; color:white; border:none; padding:10px 16px; margin:20px 0; border-radius:6px; font-size:1rem; cursor:pointer; }
+    .learn-btn { background:#f59e0b; color:white; border:none; padding:6px 10px; border-radius:6px; margin-top:6px; cursor:pointer; }
+    .correct { color: green; font-weight: bold; }
+    .wrong { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>瞬間活用ドリル 🎯</h1>
+  <div id="quiz"></div>
+  <button class="check-btn" onclick="checkAnswers()">✅ Check Answers</button>
+
+  <script>
+    // 動詞活用（ここに増やしていける）
+    const verbs = {
+      come: { base: "come", third: "comes", past: "came", perfect: "has come", future: "will come" }
+    };
+
+    // 出題パターン
+    const questions = [
+      { id: 1, q: "She ___ to the meeting yesterday.", tense: "past" },
+      { id: 2, q: "He ___ to school every day.", tense: "third" },
+      { id: 3, q: "They ___ to the park tomorrow.", tense: "future" },
+      { id: 4, q: "I ___ to the station already.", tense: "perfect" }
+    ];
+
+    const selectedVerb = "come"; // 今回は come 固定
+
+    // 保存済みチェックを読み込み
+    let learned = JSON.parse(localStorage.getItem("learned")) || [];
+
+    // 問題を表示
+    const quizDiv = document.getElementById("quiz");
+    questions.forEach((item,i) => {
+      const hidden = learned.includes(item.id);
+      quizDiv.innerHTML += `
+        <div class="question ${hidden ? "learned" : ""}" id="q${item.id}" ${hidden?"style='display:none'":""}>
+          ${i+1}. ${item.q}<br>
+          <input type="text" id="ans${item.id}" placeholder="Type your answer">
+          <button class="learn-btn" onclick="markAsLearned(${item.id})">✅ 覚えた</button>
+          <div><span id="result${item.id}"></span></div>
+        </div>
+      `;
+    });
+
+    // 答え合わせ
+    function checkAnswers() {
+      questions.forEach(item => {
+        if (learned.includes(item.id)) return; // 覚えた問題はスキップ
+        const userAns = document.getElementById("ans"+item.id).value.trim();
+        const correct = verbs[selectedVerb][item.tense];
+        const resultSpan = document.getElementById("result"+item.id);
+        if(userAns.toLowerCase() === correct.toLowerCase()) {
+          resultSpan.textContent = "✔ Correct!";
+          resultSpan.className = "correct";
+        } else {
+          resultSpan.textContent = `✘ Wrong (Answer: ${correct})`;
+          resultSpan.className = "wrong";
+        }
+      });
+    }
+
+    // 「覚えた」ボタン
+    function markAsLearned(id) {
+      if (!learned.includes(id)) {
+        learned.push(id);
+        localStorage.setItem("learned", JSON.stringify(learned));
+      }
+      document.getElementById("q"+id).style.display = "none";
+    }
+  </script>
+</body>
+</html>

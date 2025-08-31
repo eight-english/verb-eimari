@@ -7,17 +7,17 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; background: #f9fafb; }
     h1 { text-align: center; }
-    .question { margin-bottom: 20px; padding: 12px; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    input { width: 100%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
-    .check-btn { background:#10b981; color:white; border:none; padding:10px 16px; margin:20px 0; border-radius:6px; font-size:1rem; cursor:pointer; display:block; margin-left:auto; margin-right:auto;}
-    .correct { color: green; font-weight: bold; }
-    .wrong { color: red; font-weight: bold; }
+    .question { margin-bottom: 20px; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    input { width: 65%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
+    .btn { background:#3b82f6; color:white; border:none; padding:6px 12px; margin-left:10px; border-radius:6px; cursor:pointer; }
+    .learn-btn { background:#f59e0b; margin-left:10px; }
+    .correct { color: green; font-weight: bold; margin-left:10px; }
+    .wrong { color: red; font-weight: bold; margin-left:10px; }
   </style>
 </head>
 <body>
   <h1 id="title">瞬間活用ドリル 🎯</h1>
   <div id="quiz"></div>
-  <button class="check-btn" onclick="checkAnswers()">✅ Check Answers</button>
 
   <script>
     // 動詞リスト
@@ -27,12 +27,18 @@
       make: { base:"make", third:"makes", past:"made", perfect:"has made", future:"will make" }
     };
 
-    // 出題パターン
+    // 出題パターン（例：10問）
     const questions = [
       { id:1, q:"She ___ to the meeting yesterday.", tense:"past" },
       { id:2, q:"He ___ to school every day.", tense:"third" },
       { id:3, q:"They ___ to the park tomorrow.", tense:"future" },
-      { id:4, q:"I ___ to the station already.", tense:"perfect" }
+      { id:4, q:"I ___ to the station already.", tense:"perfect" },
+      { id:5, q:"We ___ a cake yesterday.", tense:"past" },
+      { id:6, q:"She ___ friends easily.", tense:"third" },
+      { id:7, q:"They ___ new plans tomorrow.", tense:"future" },
+      { id:8, q:"I ___ many mistakes already.", tense:"perfect" },
+      { id:9, q:"He ___ to the store yesterday.", tense:"past" },
+      { id:10, q:"She ___ her homework every day.", tense:"third" }
     ];
 
     // URLパラメータから動詞を取得
@@ -41,32 +47,45 @@
 
     document.getElementById("title").textContent = `瞬間活用ドリル 🎯 (${selectedVerb})`;
 
+    // LocalStorage: 覚えた問題を読み込み
+    let learned = JSON.parse(localStorage.getItem("learned_"+selectedVerb)) || [];
+
     // 問題を生成
     const quizDiv = document.getElementById("quiz");
     questions.forEach((item,i) => {
+      if (learned.includes(item.id)) return; // 覚えた問題は非表示
       quizDiv.innerHTML += `
         <div class="question" id="q${item.id}">
-          ${i+1}. ${item.q}<br>
+          ${item.id}. ${item.q}<br>
           <input type="text" id="ans${item.id}" placeholder="Type your answer">
+          <button class="btn" onclick="checkOne(${item.id}, '${item.tense}')">Check</button>
+          <button class="btn learn-btn" onclick="markAsLearned(${item.id})">✅ 覚えた</button>
           <span id="result${item.id}"></span>
         </div>
       `;
     });
 
-    // 答え合わせ
-    function checkAnswers() {
-      questions.forEach(item => {
-        const userAns = document.getElementById("ans"+item.id).value.trim();
-        const correct = verbs[selectedVerb][item.tense];
-        const resultSpan = document.getElementById("result"+item.id);
-        if(userAns.toLowerCase() === correct.toLowerCase()){
-          resultSpan.textContent = "✔ Correct!";
-          resultSpan.className = "correct";
-        } else {
-          resultSpan.textContent = `✘ Wrong (Answer: ${correct})`;
-          resultSpan.className = "wrong";
-        }
-      });
+    // 1問だけ判定
+    function checkOne(id, tense) {
+      const userAns = document.getElementById("ans"+id).value.trim();
+      const correct = verbs[selectedVerb][tense];
+      const resultSpan = document.getElementById("result"+id);
+      if(userAns.toLowerCase() === correct.toLowerCase()){
+        resultSpan.textContent = "✔ Correct!";
+        resultSpan.className = "correct";
+      } else {
+        resultSpan.textContent = `✘ Wrong (Answer: ${correct})`;
+        resultSpan.className = "wrong";
+      }
+    }
+
+    // 「覚えた」ボタン
+    function markAsLearned(id) {
+      if (!learned.includes(id)) {
+        learned.push(id);
+        localStorage.setItem("learned_"+selectedVerb, JSON.stringify(learned));
+      }
+      document.getElementById("q"+id).style.display = "none";
     }
   </script>
 </body>

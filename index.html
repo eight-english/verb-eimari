@@ -3,81 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tense Drill with Save</title>
+  <title>Select Verb</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f9fafb; }
-    h1 { text-align: center; margin-bottom: 20px; }
-    .question { margin-bottom: 20px; padding: 12px; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    input { width: 100%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
-    .learned { background: #e5ffe5; }
-    .check-btn { background:#10b981; color:white; border:none; padding:10px 16px; margin:20px 0; border-radius:6px; font-size:1rem; cursor:pointer; }
-    .learn-btn { background:#f59e0b; color:white; border:none; padding:6px 10px; border-radius:6px; margin-top:6px; cursor:pointer; }
-    .correct { color: green; font-weight: bold; }
-    .wrong { color: red; font-weight: bold; }
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; background:#f9fafb;}
+    h1 { margin-bottom: 20px; }
+    .verb-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 200px;
+      transition: 0.2s;
+    }
+    .verb-btn:hover { background:#2563eb; }
   </style>
 </head>
 <body>
   <h1>瞬間活用ドリル 🎯</h1>
-  <div id="quiz"></div>
-  <button class="check-btn" onclick="checkAnswers()">✅ Check Answers</button>
+  <p>練習したい動詞を選んでください:</p>
+  <button class="verb-btn" onclick="goQuiz('come')">come</button>
+  <button class="verb-btn" onclick="goQuiz('go')">go</button>
+  <button class="verb-btn" onclick="goQuiz('make')">make</button>
 
   <script>
-    // 動詞活用（ここに増やしていける）
-    const verbs = {
-      come: { base: "come", third: "comes", past: "came", perfect: "has come", future: "will come" }
-    };
-
-    // 出題パターン
-    const questions = [
-      { id: 1, q: "She ___ to the meeting yesterday.", tense: "past" },
-      { id: 2, q: "He ___ to school every day.", tense: "third" },
-      { id: 3, q: "They ___ to the park tomorrow.", tense: "future" },
-      { id: 4, q: "I ___ to the station already.", tense: "perfect" }
-    ];
-
-    const selectedVerb = "come"; // 今回は come 固定
-
-    // 保存済みチェックを読み込み
-    let learned = JSON.parse(localStorage.getItem("learned")) || [];
-
-    // 問題を表示
-    const quizDiv = document.getElementById("quiz");
-    questions.forEach((item,i) => {
-      const hidden = learned.includes(item.id);
-      quizDiv.innerHTML += `
-        <div class="question ${hidden ? "learned" : ""}" id="q${item.id}" ${hidden?"style='display:none'":""}>
-          ${i+1}. ${item.q}<br>
-          <input type="text" id="ans${item.id}" placeholder="Type your answer">
-          <button class="learn-btn" onclick="markAsLearned(${item.id})">✅ 覚えた</button>
-          <div><span id="result${item.id}"></span></div>
-        </div>
-      `;
-    });
-
-    // 答え合わせ
-    function checkAnswers() {
-      questions.forEach(item => {
-        if (learned.includes(item.id)) return; // 覚えた問題はスキップ
-        const userAns = document.getElementById("ans"+item.id).value.trim();
-        const correct = verbs[selectedVerb][item.tense];
-        const resultSpan = document.getElementById("result"+item.id);
-        if(userAns.toLowerCase() === correct.toLowerCase()) {
-          resultSpan.textContent = "✔ Correct!";
-          resultSpan.className = "correct";
-        } else {
-          resultSpan.textContent = `✘ Wrong (Answer: ${correct})`;
-          resultSpan.className = "wrong";
-        }
-      });
-    }
-
-    // 「覚えた」ボタン
-    function markAsLearned(id) {
-      if (!learned.includes(id)) {
-        learned.push(id);
-        localStorage.setItem("learned", JSON.stringify(learned));
-      }
-      document.getElementById("q"+id).style.display = "none";
+    function goQuiz(verb) {
+      window.location.href = "quiz.html?verb=" + verb;
     }
   </script>
 </body>

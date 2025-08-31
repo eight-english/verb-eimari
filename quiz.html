@@ -11,6 +11,7 @@
     input { width: 65%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
     .btn { background:#3b82f6; color:white; border:none; padding:6px 12px; margin-left:10px; border-radius:6px; cursor:pointer; }
     .learn-btn { background:#f59e0b; margin-left:10px; }
+    .speak-btn { background:#10b981; margin-left:10px; }
     .correct { color: green; font-weight: bold; margin-left:10px; }
     .wrong { color: red; font-weight: bold; margin-left:10px; }
   </style>
@@ -27,7 +28,7 @@
       make: { base:"make", third:"makes", past:"made", perfect:"has made", future:"will make" }
     };
 
-    // 出題パターン（例：10問）
+    // 出題パターン
     const questions = [
       { id:1, q:"She ___ to the meeting yesterday.", tense:"past" },
       { id:2, q:"He ___ to school every day.", tense:"third" },
@@ -38,7 +39,7 @@
       { id:7, q:"They ___ new plans tomorrow.", tense:"future" },
       { id:8, q:"I ___ many mistakes already.", tense:"perfect" },
       { id:9, q:"He ___ to the store yesterday.", tense:"past" },
-      { id:10, q:"She ___ her homework every day.", tense:"third" }
+      { id:10,q:"She ___ her homework every day.", tense:"third" }
     ];
 
     // URLパラメータから動詞を取得
@@ -53,13 +54,14 @@
     // 問題を生成
     const quizDiv = document.getElementById("quiz");
     questions.forEach((item,i) => {
-      if (learned.includes(item.id)) return; // 覚えた問題は非表示
+      if (learned.includes(item.id)) return;
       quizDiv.innerHTML += `
         <div class="question" id="q${item.id}">
           ${item.id}. ${item.q}<br>
           <input type="text" id="ans${item.id}" placeholder="Type your answer">
           <button class="btn" onclick="checkOne(${item.id}, '${item.tense}')">Check</button>
           <button class="btn learn-btn" onclick="markAsLearned(${item.id})">✅ 覚えた</button>
+          <button class="btn speak-btn" onclick="speakSentence('${item.q.replace("___", verbs[selectedVerb][item.tense])}')">🔊 Speak</button>
           <span id="result${item.id}"></span>
         </div>
       `;
@@ -86,6 +88,13 @@
         localStorage.setItem("learned_"+selectedVerb, JSON.stringify(learned));
       }
       document.getElementById("q"+id).style.display = "none";
+    }
+
+    // 音声読み上げ
+    function speakSentence(sentence) {
+      const utter = new SpeechSynthesisUtterance(sentence);
+      utter.lang = "en-US";
+      window.speechSynthesis.speak(utter);
     }
   </script>
 </body>

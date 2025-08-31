@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tense Drill</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9fafb; }
+    h1 { text-align: center; }
+    .question { margin-bottom: 20px; padding: 12px; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
+    .check-btn { background:#10b981; color:white; border:none; padding:10px 16px; margin:20px 0; border-radius:6px; font-size:1rem; cursor:pointer; display:block; margin-left:auto; margin-right:auto;}
+    .correct { color: green; font-weight: bold; }
+    .wrong { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1 id="title">瞬間活用ドリル 🎯</h1>
+  <div id="quiz"></div>
+  <button class="check-btn" onclick="checkAnswers()">✅ Check Answers</button>
+
+  <script>
+    // 動詞リスト
+    const verbs = {
+      come: { base:"come", third:"comes", past:"came", perfect:"has come", future:"will come" },
+      go:   { base:"go", third:"goes", past:"went", perfect:"has gone", future:"will go" },
+      make: { base:"make", third:"makes", past:"made", perfect:"has made", future:"will make" }
+    };
+
+    // 出題パターン
+    const questions = [
+      { id:1, q:"She ___ to the meeting yesterday.", tense:"past" },
+      { id:2, q:"He ___ to school every day.", tense:"third" },
+      { id:3, q:"They ___ to the park tomorrow.", tense:"future" },
+      { id:4, q:"I ___ to the station already.", tense:"perfect" }
+    ];
+
+    // URLパラメータから動詞を取得
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedVerb = urlParams.get("verb") || "come";
+
+    document.getElementById("title").textContent = `瞬間活用ドリル 🎯 (${selectedVerb})`;
+
+    // 問題を生成
+    const quizDiv = document.getElementById("quiz");
+    questions.forEach((item,i) => {
+      quizDiv.innerHTML += `
+        <div class="question" id="q${item.id}">
+          ${i+1}. ${item.q}<br>
+          <input type="text" id="ans${item.id}" placeholder="Type your answer">
+          <span id="result${item.id}"></span>
+        </div>
+      `;
+    });
+
+    // 答え合わせ
+    function checkAnswers() {
+      questions.forEach(item => {
+        const userAns = document.getElementById("ans"+item.id).value.trim();
+        const correct = verbs[selectedVerb][item.tense];
+        const resultSpan = document.getElementById("result"+item.id);
+        if(userAns.toLowerCase() === correct.toLowerCase()){
+          resultSpan.textContent = "✔ Correct!";
+          resultSpan.className = "correct";
+        } else {
+          resultSpan.textContent = `✘ Wrong (Answer: ${correct})`;
+          resultSpan.className = "wrong";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
